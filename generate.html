@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Signature Generator</title>
+    <meta name="description" content="Signature Maker is a free web based tool, that helps you create your handwritten digital signature, within few seconds. It's simple and easy to use. You don't need to download or install any plugins/software, it's based on HTML5, so a modern browser is all you need." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css" /> -->
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/ionic.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href='http://fonts.googleapis.com/css?family=Pacifico|Dancing+Script|Satisfy|Yellowtail|Calligraffitti|Sacramento|Dawning+of+a+New+Day|The+Girl+Next+Door|La+Belle+Aurore|Grand+Hotel' rel='stylesheet' type='text/css'>
+    <!--scripts loaded here from cdn for performance -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <script src="js/docs.min.js"></script>
+    <script src="js/signature_pad.min.js" type="text/javascript"></script>
+    <script src="js/tinycolor-0.9.15.min.js" type="text/javascript"></script>
+    <script src="js/pick-a-color-1.2.3.min.js" type="text/javascript"></script>
+    <script src="js/app-generate.js" type="text/javascript"></script>
+    <script src="js/saveLocal.js" type="text/javascript"></script>
+    <script src="js/scripts.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/alexk111/ngImgCrop/master/compile/minified/ng-img-crop.js"></script>
+  </head>
+  <body ng-app="app">
+
+
+
+    <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="index.html"> Signature Generator</a>
+            </div>
+            <div class="navbar-collapse collapse" id="bs-navbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="page-scroll" href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="index.html#one">Create</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="generate.html">Generate</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="email.html">Email Sig</a>
+                    </li>
+                    <!-- <li>
+                        <a class="page-scroll" href="#last">About Us</a>
+                    </li> -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#aboutModal">About Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <section id="two">
+        <div class="container">
+      <Div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="canvas-wrapper">
+                <div class="canvas-options">
+                  <form role="form" id="signatureGeneratorForm">
+                    <div class="form-group">
+                      
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                          <div class="col-xs-6">
+                              <label for="fontFamily">Select font</label>
+                              <select name="font_selector" id="fontFamily" class="form-control" onchange="javascript:void(0)">
+                                <option value="Pacifico">Pacifico</option>
+                                <option value="Dancing Script">Dancing Script</option>
+                                <option value="Satisfy">Satisfy</option>
+                                <option value="Yellowtail">Yellowtail</option>
+                                <option value="Calligraffitti">Calligraffitti</option>
+                                <option value="Sacramento">Sacramento</option>
+                                <option value="The Girl Next Door">Girl Next Door</option>
+                                <option value="La Belle Aurore">La Belle Aurore</option>
+                                <option value="Grand Hotel">Grand Hotel</option>
+                                <option value="Dawning of a New Day">New Day</option>
+                              </select>
+                          </div>
+                          <div class="col-xs-3">
+                              <label for="fontSize">Select size</label>
+                              <select name="font_size" id="fontSize" class="form-control" onchange="javascript:void(0)">
+                                <option value="20">20</option>
+                                <option value="24">24</option>
+                                <option value="30">30</option>
+                                <option value="34">34</option>
+                                <option value="36">36</option>
+                                <option value="40">40</option>
+                                <option value="48">48</option>
+                                <option value="52">52</option>
+                              </select>
+                            </div>
+                            <div class="col-xs-1">
+                              <label for="pencolor">Color</label>
+                            <input type="text" value="000" name="pen-color" id="pencolor" class="pick-a-color form-control" onchange="javascript:void(0)">
+                          </div>
+                          <div class="col-xs-2">
+                          <label for="pencolor">Change</label>
+                            <a href="javascript:void()"><button class="btn btn-primary" id="generateButton">Ok</button></a>
+                          </div>
+                          
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" placeholder="Your name here" name="name" id="sigName" class="form-control" onchange="javascript:void(0)">
+                    </div>
+                   <!--  <div class="form-group">
+                      <a href="javascript:void(0)" class="btn btn-primary" id="generateButton">Generate</a>
+                    </div> -->
+                  </form>
+                </div>
+                <canvas id="signatureCanvas" class="generator-canvas hide-by-default" width="390" height="160"></canvas>
+              </div>
+              <div class="hide-by-default">
+                <a href="javascript:void(0)" class="btn btn-primary" id="saveButton">Generate</a> <a href="javascript:void(0)" class="btn btn-default" id="clearButton">Clear</a>
+                <span id="loadingIcon"><i class="icon-spinner icon-spin icon-2x"></i> Saving...</span>
+              </div>
+              <div class="text-left" id="createImage">
+                 <img src="images/spinner.gif" class="spinner" id="sigImg" style="display:none;">
+              </div>
+
+              <div class="show-saves" style="display:none;">
+                <button id="imgCur" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span> Imgcur</button>
+                <button id="saveLocal" class="btn btn-success"><span class="glyphicon glyphicon-save-file"></span> Computer</button>
+                <button id="makeAgain" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Re-create</button>
+                <button id="saveForEmail" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> For Email</button>
+              </div>
+              <div class="spinner2" style="display:none;">
+                <img src="images/spinner.gif" height="50px" width="auto">
+              </div>
+              <br>
+              <div class="text-center" id="imgURL" style="display:none;">
+              <label>url :</label>
+                 <input type="text" class="form-control" style="width:300px;margin:0 auto;" id="valURL">
+              </div>
+               
+               
+              <br>
+          </div>
+          <div class="col-lg-3"></div>
+       </Div>
+    </div>
+
+        
+    </section>
+
+    
+
+  
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-6 col-sm-3 column">
+                    <h4>Information</h4>
+                    <ul class="list-unstyled">
+                        <li>Design By : <a href="nixongalario.com">Nixon Galario</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-sm-3 column">
+                    <h4>About</h4>
+                    <ul class="list-unstyled">
+                       <!--  <li><a href="#">Terms &amp; Conditions</a></li> -->
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-3 column">
+                    
+                </div>
+                <div class="col-xs-12 col-sm-3 text-right">
+                    <h4>Stay Posted</h4>
+                    <form>
+                        <div class="form-group">
+                          <input type="text" class="form-control" title="No spam, we promise!" placeholder="Tell us your email">
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">Subscribe for updates</button>
+                        </div>
+                    </form>
+                    <!-- <h4>Follow</h4>
+                    <ul class="list-inline">
+                      <li><a rel="nofollow" href="" title="Twitter"><i class="icon-lg ion-social-twitter-outline"></i></a>&nbsp;</li>
+                      <li><a rel="nofollow" href="" title="Facebook"><i class="icon-lg ion-social-facebook-outline"></i></a>&nbsp;</li>
+                      <li><a rel="nofollow" href="" title="Dribble"><i class="icon-lg ion-social-dribbble-outline"></i></a></li>
+                    </ul> -->
+                </div>
+            </div>
+            <br/>
+            <!-- <span class="pull-right text-muted small"><a href="http://www.bootstrapzero.com">Landing Zero by BootstrapZero</a> ©2016 Company</span> -->
+        </div>
+    </footer>
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        	<div class="modal-body">
+        		<img src="//placehold.it/1200x700/222?text=..." id="galleryImage" class="img-responsive" />
+        		<p>
+        		    <br/>
+        		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+        		</p>
+        	</div>
+        </div>
+        </div>
+    </div>
+    <div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        	<div class="modal-body">
+        		<h2 class="text-center">Signature Generator</h2>
+        		<h5 class="text-center">
+        		    A free, Signature Generator for everyone...
+        		</h5>
+                <br>
+        		<p class="text-justify">
+        		    Signature Maker is a free web based tool, that helps you create your handwritten digital signature, within few seconds. It's simple and easy to use. You don't need to download or install any plugins/software, it's based on HTML5, so a modern browser is all you need.
+        		</p>
+        		<!-- <p class="text-center"><a href="#">Download</a></p> -->
+        		<br/>
+        		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
+        	</div>
+        </div>
+        </div>
+    </div>
+    <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+        	<div class="modal-body">
+        		<h2 class="text-center">Nice Job!</h2>
+        		<p class="text-center">You clicked the button, but it doesn't actually go anywhere because this is only a demo.</p>
+        		<p class="text-center"><a href="http://www.bootstrapzero.com">Learn more at BootstrapZero</a></p>
+        		<br/>
+        		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i class="ion-android-close"></i></button>
+        	</div>
+        </div>
+        </div>
+    </div>
+    
+
+    <script src="js/email-sig.min.js" type="text/javascript"></script>  
+          <script type="text/javascript">
+          $('#hiddenuplaoded').hide();
+           $('#clearImage').hide();
+            angular.module('app', ['ngImgCrop'])
+              .controller('Ctrl', function($scope) {
+                $scope.myImage='';
+                $scope.myCroppedImage='';
+
+                var handleFileSelect=function(evt) {
+                  $('#hiddenuplaoded').show();
+                  var file=evt.currentTarget.files[0];
+                  var reader = new FileReader();
+                  reader.onload = function (evt) {
+                    $scope.$apply(function($scope){
+                      $scope.myImage=evt.target.result;
+                    });
+                  };
+                  reader.readAsDataURL(file);
+                  $('#uploadedImage').show();
+                  $('#uploadedImage').css("margin-left", "25px");
+                  $('#uploadedImage').css("margin-top", "10px");
+                  $('#sigPhoto').hide();
+                  $("#sigDetailsWrapper").css("margin-left", "120px");
+                   $('#clearImage').show();
+                };
+                angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+              });
+
+              $('#clearImage').on('click', function(){
+                  $('#hiddenuplaoded').hide();
+                   $('#uploadedImage').hide();
+                    $('#sigPhoto').show();
+                    alert('preview on Signature above had been reset!');
+                  $('#sigPhoto').attr('src','https://s3.amazonaws.com/rkjha/signature-maker/img/male-icon.png');
+              });
+          </script>
+
+  </body>
+</html>
+
+

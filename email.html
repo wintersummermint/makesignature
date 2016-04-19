@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Email Signature Generator - Online Signature Maker</title>
+
+    <!-- other meta tags -->
+
+  <meta name="description" content="A free email signature tool that helps you generate html email signature you could use with gmail, Microsoft outlook, Apple Mail or any other email program. " />
+
+
+
+    <!-- styles -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/ionic.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href='http://fonts.googleapis.com/css?family=Pacifico|Dancing+Script|Satisfy|Yellowtail|Calligraffitti|Sacramento|Dawning+of+a+New+Day|The+Girl+Next+Door|La+Belle+Aurore|Grand+Hotel' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/alexk111/ngImgCrop/master/compile/minified/ng-img-crop.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+    <script src="email-js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/alexk111/ngImgCrop/master/compile/minified/ng-img-crop.js"></script>
+
+    <style type="text/css">
+      .cropArea {
+        background: #E4E4E4;
+        overflow: hidden;
+        width:500px;
+        height:350px;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+      #fileInput {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body  ng-app="app">
+  <div ng-controller="Ctrl">
+    <!-- header starts here -->
+    <!-- static navbar : start -->
+  <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand page-scroll" href="index.html"> Signature Generator</a>
+          </div>
+          <div class="navbar-collapse collapse" id="bs-navbar">
+              <ul class="nav navbar-nav">
+                  <li>
+                      <a class="page-scroll" href="index.html">Home</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="index.html#one">Create</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="generate.html">Generate</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="email.html">Email Sig</a>
+                  </li>
+                  <!-- <li>
+                      <a class="page-scroll" href="#last">About Us</a>
+                  </li> -->
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#aboutModal">About Us</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+<!-- static navbar : end -->
+
+    <!-- end of header -->
+
+    <!-- main content -->
+    <div class="container">
+  <!-- content starts here -->
+  <div class="content">
+    <!-- title -->
+    <div class="col-xs-6" style="margin-top: 150px;">
+      <h1  style="color:#5077FF;">Email Signature Generator</h1>
+      <p class="subtitle">Email Signature for Everyone.</p>
+    </div>
+          <div class="col-md-5 col-md-offset-1">
+            <div class="ads ads-right">
+              <style>
+              .signature-maker-responsive-atf-sidebar { width: 320px; height: 100px; }
+              @media(min-width: 450px) { .signature-maker-responsive-atf-sidebar { width: 468px; height: 60px; } }
+              @media(min-width: 730px) { .signature-maker-responsive-atf-sidebar { width: 728px; height: 90px; } }
+              @media(min-width: 991px) { .signature-maker-responsive-atf-sidebar { width: 320px; height: 100px; } }
+              @media(min-width: 1200px) { .signature-maker-responsive-atf-sidebar { width: 468px; height: 60px; } }
+              </style>
+            </div>
+            <!-- <div class="alert alert-info" role="alert">
+              <p>
+                If you would prefer to generate signature using some fonts instead of drawing it here, then
+                <a href="/signature-generator" title="Generate signature using Fonts" class="">Generate Signature Here</a>.
+              </p>
+            </div> -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Preview</h3>
+              </div>
+              <div class="panel-body">
+                <div id="email-sig-box">
+                  <div id="sig-container" style="margin-top: 15px;padding-top: 6px; border-top: 1px dashed #ddd;word-wrap: break-word;">
+                    <div style="float:left; margin: 2px 5px 5px 0; padding-right: 5px;">
+                      <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-128.png" width="65px" height="65px" id="sigPhoto" >
+                      <div id="hiddenuplaoded">
+                        <img ng-src="{{myCroppedImage}}" style="border-radius:100px;" width="65px" height="65px" style="display:none;" id="uploadedImage" />
+                      </div>
+                    </div>
+                    <div style="margin-top:0px; margin-left: 74px;" id="sigDetailsWrapper">
+                      <div id="loadSignature">
+                          <br>
+                          <img src="images/spinner.gif" height="50" width="auto" id="sigIMG">
+                          <br>
+                          <br>
+
+                        </div>
+
+                      <p style="font-family: Helvetica, sans-serif; font-size: 12px; line-height: 14px; color: #333; margin-top:0; margin-left:0; padding-left:0;">
+                        <strong><span id="sigName">John Doe</span></strong>
+                        <span id="sigTitle">/ Developer</span><br>
+                        <span><a href="mailto:name@example.com" id="sigEmail" style="color:#428BCA;">name@example.com</a></span>
+                        <span id="sigMobile">/ 9000000000</span>
+                      </p>
+                      <p style="font-family: Helvetica, sans-serif; font-size: 12px; line-height: 14px; color: #333;" id="sigCompanyWrapper">
+                        <strong><span id="sigCompany">Imaginary Ltd.</span></strong><br>
+                        <span><a href="http://example.com" id="sigWebsite" style="color:#428BCA;" rel="nofollow">http://example.com</a></span> <br>
+                        <span id="sigAddress" style="font-size: 10px; line-height: 14px; margin: 5px 0; display:block; opacity:0.8;">#420 New Street. NYC-55555 USA</span>
+                      </p>
+                      <p style="font-family: Helvetica, sans-serif; font-size: 12px; line-height: 14px; color: #333;">
+                        <div class="social-icons">
+                          <span id="twitterIcon"><a href="#"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/twitter_circle_color-20.png" width="20px" height="20px"></a></span>
+                          <span id="facebookIcon"><a href="#"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-20.png" width="20px" height="20px"></a></span>
+                          <span id="gplusIcon"><a href="#"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/google_circle_color-20.png" width="20px" height="20px"></a></span>
+                          <span id="instagramIcon"><a href="#"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/instagram_circle_color-20.png" width="20px" height="20px"></a></span>
+                          <span id="linkedinIcon"><a href="#"><img src="http://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_color-20.png" width="20px" height="20px"></a></span>
+                          <span id="youtubeIcon"><a href="#"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/youtube_circle_color-20.png" width="20px" height="20px"></a></span>
+                          <span id="vimeoIcon"><a href="#"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/vimeo_circle_color-20.png" width="20px" height="20px"></a></span>
+                          <span id="githubIcon"><a href="#"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/github_circle_color-20.png" width="20px" height="20px"></a></span>
+                          <span id="blogIcon"><a href="#"><img src="https://cdn0.iconfinder.com/data/icons/social-15/200/wordpress-20.png" width="20px" height="20px"></a></span>
+                        </div>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <a href="javascript:void(0)" class="btn btn-success" id="getSourceBtn" data-toggle="modal" data-target="#viewSourceModel">Source Code</a>
+                <a href="javascript:void(0)" class="btn btn-success" id="highlightSelectBtn">Highlight & Select</a>
+                <a href="javascript:void(0)" class="btn btn-success" id="toggleSetupInfo">Setup Instructions</a>
+
+                <br>
+                <p id="changeSigIMG" style="cursor:pointer;margin-top:30px;" class="text-center"><small><span style="border-top: 1px solid;width: 150px;">Change the signature above</span></small></p>
+                <span style="margin-left: 4px;"><br><a id="insertSignOption" style="text-decoration:underline;cursor:pointer;">Insert own signature</a>
+                <div class="well" id="optionForInsert" style="width: 290px;display:none;">
+                <span class="glyphicon glyphicon-remove pull-right" style="margin-left:10px;margin-top:10px;cursor:pointer;" id="removeOptons"></span>
+                  <button class="btn btn-success">Upload</button>
+                  <a  href="index.html#one"><button class="btn btn-info">Create</button></a>
+                  <a href="generate.html"><button class="btn btn-warning">Generate</button></a>
+                </div>
+                </span>
+              </div>
+            </div>
+            <!-- modal content -->
+            <div class="modal fade" id="viewSourceModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" style="z-index: 99999;">
+                <div class="modal-content selected">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Your Email Signature <small>Copy the HTML code below and paste it to your signature file</small></h4>
+                  </div>
+                  <div class="modal-body" id="modalContent" style="word-wrap: break-word;">
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id="selectAllButton" class="btn btn-primary">Select All</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of modal content -->
+            <div class="ads ads-left">
+
+            </div>
+            <div id="setupInfo" class="well well-sm" style="display:none;">
+              <h4 class="text-info"><strong>Setup Instructions</strong></h4>
+              <p class="text-info">Note : For Gmail/Outlook</p>
+              <p class="text-info">For some email prograns(gmail, Microsoft Outlook 2010 etc), simply copy using the <em>'Highlight & Select'</em> button, and paste it to <em>Settings -> Signature</em> and click on 'Save Changes' to apply the settings (for gmail or similar other email programs such as Outlook, Yahoo Mail etc unless you can directly paste html snippet there).</p>
+            </div>
+            <div class="social-share-buttons">
+      <span class="social-btn share-text"><strong>Share on</strong></span>
+      <span class="social-btn twitter-btn">
+        <a href="https://twitter.com/share?url=www.nuganics.com.au/signature/&text=Signature%20Generator" target="_blank">Twitter</a>
+      </span>
+      <span class="social-btn facebook-btn">
+        <a href="http://www.facebook.com/sharer.php?u=www.nuganics.com.au/signature" target="_blank">Facebook</a>
+      </span>
+      <span class="social-btn gplus-btn">
+        <a href="https://plus.google.com/share?url=www.nuganics.com.au/" target="_blank">Google Plus</a>
+      </span>
+    </div>
+
+          </div>
+
+    <!-- main content starts here -->
+    <div class="row main">
+      <div class="col-md-12">
+        <div class="ads ads-top">
+
+        </div>
+        <div class="form-wrapper">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#basic" role="tab" data-toggle="tab">Basic</a></li>
+            <li><a href="#social" role="tab" data-toggle="tab" id="socialClicked">Social</a></li>
+            <!-- <li><a href="#style" role="tab" data-toggle="tab">Style</a></li> -->
+            <!-- <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li> -->
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="basic">
+              <form role="form" class="email-sig-form">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <label for="nameInputField">Name</label>
+                      <input type="text" class="form-control" id="nameInputField" placeholder="Foo Bar">
+                    </div>
+                    <div class="form-group">
+                      <label for="emailInputField">Email Address</label>
+                      <input type="email" class="form-control" id="emailInputField" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                      <label for="mobileInputField">Mobile/Phone</label>
+                      <input type="tel" class="form-control" id="mobileInputField" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <label for="titleInputField">Job Title</label>
+                      <input type="test" class="form-control" id="titleInputField" placeholder="Developer">
+                    </div>
+                    <div class="form-group">
+                      <label for="companyInputField">Company Name</label>
+                      <input type="text" class="form-control" id="companyInputField" placeholder="Imaginary Ltd.">
+                    </div>
+                    <div class="form-group">
+                      <label for="websiteInputField">Website</label>
+                      <input type="text" class="form-control" id="websiteInputField" placeholder="http://">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="addressInputField">Address</label>
+                  <input type="text" class="form-control" id="addressInputField">
+                </div>
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label for="photoInputField">Photo / Avatar URL</label> <span class="help-block"><small>Upload your photo to and Crop it here.</small></span>
+                    <input type="text" class="form-control" id="photoInputField" placeholder="http://">
+                    <br>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label for="photoInputField"> or Avatar Icons</label> <span class="help-block"><small>Choose one</small></span>
+                    <div class="well text-center" style="background:#B2B2B2;" id="well-imgs">
+                      <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-128.png" width="65px" height="65px" id="avatar1">
+                      <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-128.png" width="65px" height="65px" id="avatar2">
+                      <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-128.png" width="65px" height="65px" id="avatar3">
+                      <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/boy-128.png" width="65px" height="65px" id="avatar4">
+                      <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/supportmale-128.png" width="65px" height="65px" id="avatar5">
+                      <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/maturewoman-3-128.png" width="65px" height="65px" id="avatar6">
+                      <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/supportfemale-128.png" width="65px" height="65px" id="avatar7">
+                    </div>
+                    <br>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12">
+                   <label>or upload an image file: <input type="file" id="fileInput" /></label>
+                  <div class="cropArea">
+                    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                  <div style="margin-top: 65px;">Cropped Image:</div>
+                  <div class="text-center" style="margin-bottom: 10px;"><img ng-src="{{myCroppedImage}}" style="border-radius:100px;" />
+                  <button class="btn btn-default" id="clearImage">Clear</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane" id="social">
+            <br>
+              <form role="form" class="email-sig-form">
+                <div class="alert alert-info" role="alert">
+                  <p>
+                   Enter full URL (starting with <em>http(s)://</em>) for any social profile or blog.
+                   <button class="btn btn-warning pull-right" id="addSocials">Add Social URL's</button>
+                  </p>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <label for="twitterURLInputField">Twitter</label>
+                      <input type="text" class="form-control" id="twitterURLInputField" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="facebookURLInputField">Facebook</label>
+                      <input type="test" class="form-control" id="facebookURLInputField">
+                    </div>
+                    <div class="form-group">
+                      <label for="gplusURLInputField">Google Plus</label>
+                      <input type="text" class="form-control" id="gplusURLInputField">
+                    </div>
+                    <div class="form-group">
+                      <label for="linkedinURLInputField">Linkedin</label>
+                      <input type="email" class="form-control" id="linkedinURLInputField" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="instagramURLInputField">Instagram</label>
+                      <input type="test" class="form-control" id="instagramURLInputField">
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <label for="githubURLInputField">GitHub</label>
+                      <input type="test" class="form-control" id="githubURLInputField">
+                    </div>
+                    <div class="form-group">
+                      <label for="vimeoURLInputField">Vimeo</label>
+                      <input type="text" class="form-control" id="vimeoURLInputField">
+                    </div>
+                    <div class="form-group">
+                      <label for="youtubeURLInputField">YouTube</label>
+                      <input type="test" class="form-control" id="youtubeURLInputField">
+                    </div>
+                    <div class="form-group">
+                      <label for="dribbleURLInputField">Dribble</label>
+                      <input type="test" class="form-control" id="dribbleURLInputField">
+                    </div>
+                    <div class="form-group">
+                      <label for="blogURLInputField">Blog</label>
+                      <input type="test" class="form-control" id="blogURLInputField">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- <div class="tab-pane" id="style">
+            </div> -->
+           <!--  <div class="tab-pane" id="settings">...</div> -->
+          </div>
+          <!-- <a href="javascript:void(0)" class="btn btn-primary" id="saveButton">Save</a> <a href="javascript:void(0)" class="btn btn-default" id="clearButton">Clear</a> -->
+          <span id="loadingIcon"><i class="icon-spinner icon-spin icon-2x"></i> Saving...</span>
+        </div>
+        <!-- <div id="results-wrapper">
+
+        </div> -->
+
+      <!-- end of result wrapper-->
+
+
+    </div> <!-- end of main -->
+  </div>
+  <!-- end of content -->
+</div>
+
+
+
+
+    <!-- footer starts here -->
+    <!-- Footer -->
+
+    <!-- footer ends here -->
+
+    <!-- javascript libraries -->
+
+    <!-- custom scripts -->
+
+      <script src="email-js/email-sig.min.js" type="text/javascript"></script>
+ </div>
+ <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-6 col-sm-3 column">
+                    <h4>About</h4>
+                    <ul class="list-unstyled">
+                       <!--  <li><a href="#">Terms &amp; Conditions</a></li> -->
+                       Signature Generator by : <a href="#">Nuganics</a><br>
+                       Design by: <a href="http://nixongalario.com">Nixon Galario</a>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-sm-3 column">
+
+                </div>
+                <div class="col-xs-12 col-sm-3 column">
+
+                </div>
+                <div class="col-xs-12 col-sm-3 text-right">
+                    <h4>Stay Posted</h4>
+                    <form>
+                        <div class="form-group">
+                          <input type="text" class="form-control" title="No spam, we promise!" placeholder="Tell us your email">
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">Subscribe for updates</button>
+                        </div>
+                    </form>
+                    <!-- <h4>Follow</h4>
+                    <ul class="list-inline">
+                      <li><a rel="nofollow" href="" title="Twitter"><i class="icon-lg ion-social-twitter-outline"></i></a>&nbsp;</li>
+                      <li><a rel="nofollow" href="" title="Facebook"><i class="icon-lg ion-social-facebook-outline"></i></a>&nbsp;</li>
+                      <li><a rel="nofollow" href="" title="Dribble"><i class="icon-lg ion-social-dribbble-outline"></i></a></li>
+                    </ul> -->
+                </div>
+            </div>
+            <br/>
+            <!-- <span class="pull-right text-muted small"><a href="http://www.bootstrapzero.com">Landing Zero by BootstrapZero</a> ©2016 Company</span> -->
+        </div>
+    </footer>
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <!-- <img src="//placehold.it/1200x700/222?text=..." id="galleryImage" class="img-responsive" /> -->
+            <p>
+                <br/>
+                <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+            </p>
+          </div>
+        </div>
+        </div>
+    </div>
+    <div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h2 class="text-center">Signature Generator</h2>
+            <h5 class="text-center">
+                A free, Signature Generator for everyone...
+            </h5>
+                <br>
+            <p class="text-justify">
+                Signature Maker is a free web based tool, that helps you create your handwritten digital signature, within few seconds. It's simple and easy to use. You don't need to download or install any plugins/software, it's based on HTML5, so a modern browser is all you need.
+            </p>
+            <!-- <p class="text-center"><a href="#">Download</a></p> -->
+            <br/>
+            <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
+          </div>
+        </div>
+        </div>
+    </div>
+    <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h2 class="text-center">Nice Job!</h2>
+            <p class="text-center">You clicked the button, but it doesn't actually go anywhere because this is only a demo.</p>
+            <p class="text-center"><a href="http://www.bootstrapzero.com">Learn more at BootstrapZero</a></p>
+            <br/>
+            <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i class="ion-android-close"></i></button>
+          </div>
+        </div>
+        </div>
+    </div>
+      <script type="text/javascript">
+      $('#hiddenuplaoded').hide();
+      $('#clearImage').hide();
+      $('#addSocials').on('click' , function(){
+        if ($('#twitterURLInputField').val() == "") {
+          $('#twitterIcon').remove();
+        } else {
+          $('social-icons').append('<span id="twitterIcon"><a href="'+ $('#twitterURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/twitter_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+        if ($('#facebookURLInputField').val() == "") {
+          $('#facebookIcon').remove();
+        } else {
+          $('social-icons').append('<span id="facebookIcon"><a href="'+ $('#facebookURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+        if ($('#gplusURLInputField').val() == "") {
+          $('#gplusIcon').remove();
+        } else {
+          $('social-icons').append('<span id="gplusIcon"><a href="'+ $('#gplusURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/google_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#instagramURLInputField').val() == "") {
+          $('#instagramIcon').remove();
+        } else {
+          $('social-icons').append('<span id="instagramIcon"><a href="'+ $('#instagramURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/instagram_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#linkedinURLInputField').val() == "") {
+          $('#linkedinIcon').remove();
+        } else {
+          $('social-icons').append('<span id="linkedinIcon"><a href="'+ $('#linkedinURLInputField').val() +'"><img src="http://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#youtubeURLInputField').val() == "") {
+          $('#youtubeIcon').remove();
+        } else {
+          $('social-icons').append('<span id="youtubeIcon"><a href="'+ $('#youtubeURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/youtube_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#vimeoURLInputField').val() == "") {
+          $('#vimeoIcon').remove();
+        } else {
+          $('social-icons').append('<span id="vimeoIcon"><a href="'+ $('#vimeoURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/vimeo_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#githubURLInputField').val() == "") {
+          $('#githubIcon').remove();
+        } else {
+          $('social-icons').append('<span id="githubIcon"><a href="'+ $('#githubURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/github_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#blogURLInputField').val() == "") {
+          $('#blogIcon').remove();
+        } else {
+          $('social-icons').append('<span id="blogIcon"><a href="'+ $('#blogURLInputField').val() +'"><img src="https://cdn0.iconfinder.com/data/icons/social-15/200/wordpress-20.png" width="20px" height="20px"></a></span>');
+        }
+
+      });
+
+      $('#getSourceBtn').on('click' , function(){
+        if ($('#twitterURLInputField').val() == "") {
+          $('#twitterIcon').remove();
+        } else {
+          $('social-icons').append('<span id="twitterIcon"><a href="'+ $('#twitterURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/twitter_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+        if ($('#facebookURLInputField').val() == "") {
+          $('#facebookIcon').remove();
+        } else {
+          $('social-icons').append('<span id="facebookIcon"><a href="'+ $('#facebookURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+        if ($('#gplusURLInputField').val() == "") {
+          $('#gplusIcon').remove();
+        } else {
+          $('social-icons').append('<span id="gplusIcon"><a href="'+ $('#gplusURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/google_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#instagramURLInputField').val() == "") {
+          $('#instagramIcon').remove();
+        } else {
+          $('social-icons').append('<span id="instagramIcon"><a href="'+ $('#instagramURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/instagram_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#linkedinURLInputField').val() == "") {
+          $('#linkedinIcon').remove();
+        } else {
+          $('social-icons').append('<span id="linkedinIcon"><a href="'+ $('#linkedinURLInputField').val() +'"><img src="http://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#youtubeURLInputField').val() == "") {
+          $('#youtubeIcon').remove();
+        } else {
+          $('social-icons').append('<span id="youtubeIcon"><a href="'+ $('#youtubeURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/youtube_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#vimeoURLInputField').val() == "") {
+          $('#vimeoIcon').remove();
+        } else {
+          $('social-icons').append('<span id="vimeoIcon"><a href="'+ $('#vimeoURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/vimeo_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#githubURLInputField').val() == "") {
+          $('#githubIcon').remove();
+        } else {
+          $('social-icons').append('<span id="githubIcon"><a href="'+ $('#githubURLInputField').val() +'"><img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/github_circle_color-20.png" width="20px" height="20px"></a></span>');
+        }
+
+        if ($('#blogURLInputField').val() == "") {
+          $('#blogIcon').remove();
+        } else {
+          $('social-icons').append('<span id="blogIcon"><a href="'+ $('#blogURLInputField').val() +'"><img src="https://cdn0.iconfinder.com/data/icons/social-15/200/wordpress-20.png" width="20px" height="20px"></a></span>');
+        }
+
+      });
+
+       var a = localStorage.getItem("hasEmailSignatureIMG");
+       var b = localStorage.getItem("emailSignatureIMG");
+
+       if (a == "true") {
+         $('#loadSignature').show();
+         $('#loadSignature>img').show();
+         $('#loadSignature>img').attr('src', b);
+         $('#insertSignOption').hide();
+       } else if (a == "false") {
+          $('#loadSignature').hide();
+          $('#insertSignOption').show();
+       } else {
+          $('#loadSignature').hide();
+          $('#loadSignature>img').hide();
+          $('#insertSignOption').show();
+       }
+        angular.module('app', ['ngImgCrop'])
+          .controller('Ctrl', function($scope) {
+            $scope.myImage='';
+            $scope.myCroppedImage='';
+
+            var handleFileSelect=function(evt) {
+              $('#hiddenuplaoded').show();
+              var file=evt.currentTarget.files[0];
+              var reader = new FileReader();
+              reader.onload = function (evt) {
+                $scope.$apply(function($scope){
+                  $scope.myImage=evt.target.result;
+                });
+              };
+              reader.readAsDataURL(file);
+              $('#uploadedImage').show();
+              $('#uploadedImage').css("margin-left", "25px");
+              $('#uploadedImage').css("margin-top", "10px");
+              $('#sigPhoto').hide();
+              $("#sigDetailsWrapper").css("margin-left", "120px");
+               $('#clearImage').show();
+            };
+            angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+          });
+
+          $('#clearImage').on('click', function(){
+              $('#hiddenuplaoded').hide();
+               $('#uploadedImage').hide();
+                $('#sigPhoto').show();
+                alert('preview on Signature above had been reset!');
+              $('#sigPhoto').attr('src','https://s3.amazonaws.com/rkjha/signature-maker/img/male-icon.png');
+          });
+
+          $('#insertSignOption').on('click', function(){
+            $('#insertSignOption').hide();
+            $('#optionForInsert').fadeIn();
+          });
+
+          $('#changeSigIMG').on('click', function() {
+            $('#insertSignOption').fadeIn();
+            $('#changeSigIMG').hide();
+            $('#sigIMG').hide();
+
+          });
+          $('#removeOptons').on('click', function(){
+            $('#sigIMG').show();
+            $('#optionForInsert').hide();
+            $('#insertSignOption').hide();
+            $('#insertSignOption').fadeIn();
+            $('#changeSigIMG').fadeIn();
+            $('#insertSignOption').hide();
+            if ($('#loadSignature').css('display') == 'none') {
+              $('#insertSignOption').show();
+            }
+          });
+
+      </script>
+
+
+  </body>
+</html>
